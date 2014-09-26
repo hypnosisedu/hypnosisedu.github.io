@@ -1,6 +1,6 @@
 angular.module('hea', ['ngRoute']).config(function($routeProvider){
 	$routeProvider.when('/conference', {
-		templateUrl: 'inc/conf.html',
+		templateUrl: 'inc/conference.html',
 	}).when('/registration', {
 		templateUrl: 'inc/reg.html',
 	}).when('/articles', {
@@ -14,8 +14,11 @@ angular.module('hea', ['ngRoute']).config(function($routeProvider){
 	}).otherwise('/', {
 		templateUrl: 'inc/home.html',
 	});
-}).controller('heaCtrl', ['$scope', '$routeParams', 
-	function heaCtrl($scope, $routeParams) {
+}).controller('heaCtrl', ['$scope', '$routeParams', '$location'
+	function heaCtrl($scope, $routeParams, $location) {
+		$('.navbar-nav li a').each(function(){
+			if($(this).attr('href') == $location.path()){$(this).addClass('active');}else{$(this).removeClass('active');}
+		});
 		
 	}
 ]);
